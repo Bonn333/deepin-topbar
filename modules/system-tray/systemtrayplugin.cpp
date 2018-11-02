@@ -29,6 +29,10 @@ void SystemTrayPlugin::init(PluginProxyInterface *proxyInter)
 {
     m_proxyInter = proxyInter;
 
+    if (m_containerSettings->value("enable", false).toBool()) {
+        return;
+    }
+
     m_sniWatcher = new StatusNotifierWatcher(this);
 
     QDBusConnection dbusConn = QDBusConnection::sessionBus();
